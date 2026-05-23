@@ -1,0 +1,284 @@
+/* Core CSS for Celestia Apology Website */
+
+/* Reset & Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Fredoka', sans-serif;
+    background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    color: #495057;
+}
+
+/* Floating Hearts & Background Animations */
+.hearts-container, .confetti-container, .sparkles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -60px;
+    user-select: none;
+    animation: floatUp 6s linear infinite;
+    filter: drop-shadow(0 2px 5px rgba(230, 73, 128, 0.2));
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-115vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.sparkle {
+    position: absolute;
+    background: radial-gradient(circle, #fff 10%, rgba(255,255,255,0) 80%);
+    border-radius: 50%;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.6); }
+    50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+/* Confetti styling for page 2 */
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 12px;
+    height: 12px;
+    opacity: 0.8;
+    border-radius: 50%;
+    animation: fallDown 4s linear infinite;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Container & Card Layout */
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 32px;
+    padding: 45px 35px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(230, 73, 128, 0.15);
+    transform: scale(0.9);
+    opacity: 0;
+    animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+}
+
+@keyframes cardEntrance {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Typography */
+.apology-title, .celebration-title {
+    font-family: 'Pacifico', cursive;
+    color: #e64980;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(230, 73, 128, 0.1);
+}
+
+.celebration-title {
+    color: #d6336c;
+}
+
+.message-text, .celebration-text {
+    font-size: 1.35rem;
+    color: #5c5f66;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.celebration-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+/* Sticker / Image styling */
+.sticker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    height: 200px;
+}
+
+.sticker {
+    max-width: 180px;
+    max-height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 15px rgba(230, 73, 128, 0.18));
+}
+
+/* Sticker Animations */
+.sad-bear-sticker {
+    animation: sadSway 4s ease-in-out infinite;
+}
+
+@keyframes sadSway {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg) scale(1);
+    }
+    50% {
+        transform: translateY(5px) rotate(2deg) scale(0.95);
+    }
+}
+
+.happy-bear-sticker {
+    animation: happyOscillation 2s ease-in-out infinite;
+}
+
+@keyframes happyOscillation {
+    0%, 100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg) scale(1.03);
+    }
+}
+
+/* Button Styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-height: 60px; /* Crucial to prevent container collapsing when 'No' moves */
+    position: relative;
+}
+
+.btn {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+    color: white;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+    animation: heartPulse 1.8s infinite;
+}
+
+.btn-yes:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.45);
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+.btn-no {
+    background-color: #f1f3f5;
+    color: #868e96;
+    border: 2px solid #e9ecef;
+}
+
+.btn-no.evasive {
+    position: fixed;
+    z-index: 9999;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: left 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.15), top 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.btn-replay {
+    background: transparent;
+    color: #e64980;
+    border: 2px dashed #fcc2d7;
+    font-size: 1.05rem;
+    padding: 10px 25px;
+}
+
+.btn-replay:hover {
+    background-color: #fff0f6;
+    border-color: #e64980;
+    transform: scale(1.05);
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 480px) {
+    .apology-title, .celebration-title {
+        font-size: 1.8rem;
+    }
+    .message-text, .celebration-text {
+        font-size: 1.15rem;
+    }
+    .btn {
+        font-size: 1.1rem;
+        padding: 10px 28px;
+    }
+    .card {
+        padding: 35px 20px;
+    }
+    .sticker {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}
